@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Novi Pak — Prerada i pakovanje snack proizvoda",
+  title: "Novi Pak - Premium snack proizvodi i pakovanje",
   description:
-    "Novi Pak Premijum doo Niš — prerada i pakovanje snack proizvoda, praškastih proizvoda i začina. Više od dve decenije tradicije.",
+    "Novi Pak Premijum doo Niš - premium snack proizvodi, praškasti proizvodi, začini i uslužno pakovanje za partnere.",
 };
 
 export default function RootLayout({
@@ -22,7 +22,7 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Anton&family=Bahiana&family=Inter:wght@400;500;600;700;800;900&display=swap"
           rel="stylesheet"
         />
       </head>
