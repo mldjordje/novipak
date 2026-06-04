@@ -105,6 +105,14 @@ a { color: inherit; text-decoration: none; }
 .mobile-menu a { font-family: "Bahiana"; font-size: 48px; color: var(--red-dark); }
 
 .hero {
+  --hero-progress: 0;
+  --hero-pull: 0;
+  --hero-wave: 0;
+  --hero-exit: 0;
+  --hero-warmth: .08;
+  --crumb-opacity: 0;
+  --crumb-y: 0px;
+  --crumb-scale: .6;
   height: 245vh;
   background:
     radial-gradient(circle at 18% 18%, rgba(255, 197, 62, .42), transparent 32%),
@@ -112,6 +120,18 @@ a { color: inherit; text-decoration: none; }
     linear-gradient(180deg, #fffdf8 0%, var(--cream) 72%, #fff3d8 100%);
 }
 .hero__sticky { position: sticky; top: 0; height: 100vh; overflow: hidden; }
+.hero__sticky::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: var(--hero-warmth);
+  background:
+    radial-gradient(circle at 50% 46%, rgba(255, 197, 62, .58), transparent 32%),
+    radial-gradient(circle at 50% 58%, rgba(235, 29, 36, .28), transparent 44%);
+  transition: opacity .18s linear;
+}
 .hero__peanut3d {
   position: absolute;
   inset: 0;
@@ -130,6 +150,40 @@ a { color: inherit; text-decoration: none; }
   position: absolute; inset: auto 0 0; z-index: 2; height: 34vh; pointer-events: none;
   background: linear-gradient(180deg, transparent, rgba(255, 248, 236, .88));
 }
+.hero__crumbs {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: var(--crumb-opacity);
+  transform: translateY(var(--crumb-y));
+}
+.hero__crumbs span {
+  position: absolute;
+  width: var(--s, 5px);
+  height: var(--s, 5px);
+  border-radius: 999px;
+  background: radial-gradient(circle, #fff7c8 0 22%, var(--yellow) 48%, var(--gold) 100%);
+  box-shadow: 0 0 14px rgba(255, 197, 62, .34);
+  transform: translate(var(--dx, 0px), var(--dy, 0px)) scale(var(--crumb-scale));
+  animation: crumbDrift 5.4s ease-in-out infinite;
+}
+.hero__crumbs span:nth-child(1) { --s: 4px; --dx: -18px; --dy: 22px; left: 31%; top: 27%; }
+.hero__crumbs span:nth-child(2) { --s: 7px; --dx: 24px; --dy: -18px; left: 65%; top: 29%; }
+.hero__crumbs span:nth-child(3) { --s: 5px; --dx: -32px; --dy: -8px; left: 26%; top: 52%; }
+.hero__crumbs span:nth-child(4) { --s: 6px; --dx: 28px; --dy: 16px; left: 72%; top: 54%; }
+.hero__crumbs span:nth-child(5) { --s: 4px; --dx: 34px; --dy: -20px; left: 39%; top: 69%; }
+.hero__crumbs span:nth-child(6) { --s: 6px; --dx: -22px; --dy: 18px; left: 59%; top: 67%; }
+.hero__crumbs span:nth-child(7) { --s: 5px; --dx: 16px; --dy: 30px; left: 19%; top: 38%; }
+.hero__crumbs span:nth-child(8) { --s: 4px; --dx: -20px; --dy: 24px; left: 82%; top: 39%; }
+.hero__crumbs span:nth-child(9) { --s: 7px; --dx: 26px; --dy: -26px; left: 23%; top: 74%; }
+.hero__crumbs span:nth-child(10) { --s: 5px; --dx: -30px; --dy: -18px; left: 78%; top: 73%; }
+.hero__crumbs span:nth-child(11) { --s: 4px; --dx: 20px; --dy: -16px; left: 45%; top: 22%; }
+.hero__crumbs span:nth-child(12) { --s: 6px; --dx: -26px; --dy: 22px; left: 55%; top: 78%; }
+@keyframes crumbDrift {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -8px; }
+}
 .hero__content {
   position: absolute; inset: 0; z-index: 4; display: flex; flex-direction: column;
   align-items: center; justify-content: center; text-align: center; padding: 0 24px;
@@ -145,13 +199,26 @@ a { color: inherit; text-decoration: none; }
 .hero.reveal .hero__line, .hero.reveal .hero__sub, .hero.reveal .hero__actions { opacity: 1; transform: none; }
 
 .hero__floaters { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
-.floater { position: absolute; opacity: 0; filter: drop-shadow(0 28px 34px rgba(149, 28, 32, .18)); transform: translateY(26px) rotate(var(--r, 0deg)) scale(.9); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+.floater {
+  --motion-x: 0px;
+  --motion-y: 0px;
+  --motion-rot: 0deg;
+  --motion-scale: 1;
+  position: absolute;
+  opacity: 0;
+  filter: drop-shadow(0 28px 34px rgba(149, 28, 32, .18));
+  transform: translateY(26px) rotate(var(--r, 0deg)) scale(.9);
+  transition: opacity .8s var(--ease), transform .8s var(--ease);
+}
 .floater img { width: 100%; height: auto; display: block; animation: packFloat var(--fd, 7s) ease-in-out infinite; }
 .floater.f1 { --r: -8deg; --fd: 7.5s; width: clamp(130px, 17vw, 250px); left: 8%; top: 22%; }
 .floater.f2 { --r: 8deg; --fd: 8.5s; width: clamp(150px, 19vw, 280px); right: 6%; top: 18%; }
 .floater.f3 { --r: 6deg; --fd: 7s; width: clamp(128px, 16vw, 238px); left: 10%; bottom: 14%; }
 .floater.f4 { --r: -7deg; --fd: 9s; width: clamp(130px, 17vw, 250px); right: 9%; bottom: 12%; }
-.hero.reveal .floater { opacity: 1; transform: rotate(var(--r, 0deg)) scale(1); }
+.hero.reveal .floater {
+  opacity: 1;
+  transform: translate(var(--motion-x), var(--motion-y)) rotate(calc(var(--r, 0deg) + var(--motion-rot))) scale(var(--motion-scale));
+}
 .hero.reveal .floater.f2 { transition-delay: .12s; }
 .hero.reveal .floater.f3 { transition-delay: .24s; }
 .hero.reveal .floater.f4 { transition-delay: .36s; }

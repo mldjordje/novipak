@@ -10,6 +10,7 @@ import {
   SiteShell,
 } from "./site-ui";
 import { HeroPeanutScene } from "./HeroPeanutScene";
+import { HeroMotionController } from "./HeroMotionController";
 
 export default function Page() {
   const featuredProducts = allProducts.slice(0, 8);
@@ -19,7 +20,13 @@ export default function Page() {
       <header className="hero" id="pocetna">
         <div className="hero__sticky">
           <HeroPeanutScene />
+          <HeroMotionController />
           <div className="hero__shine" aria-hidden />
+          <div className="hero__crumbs" aria-hidden>
+            {Array.from({ length: 12 }).map((_, index) => (
+              <span key={index} />
+            ))}
+          </div>
           <div className="hero__floaters" aria-hidden>
             {categories.map((category, index) => (
               <span key={category.slug} className={`floater f${index + 1}`}>
