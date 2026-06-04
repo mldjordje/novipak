@@ -16,15 +16,23 @@ type PeanutInstance = {
 };
 
 const DESKTOP_LAYOUT = [
-  [-3.45, 1.22, -0.8, 0.52],
-  [3.58, 1.03, -0.72, 0.58],
-  [-3.2, -1.8, -0.85, 0.48],
-  [3.28, -1.78, -0.82, 0.5],
+  [-3.0, 1.62, -0.72, 0.66],
+  [3.05, 1.46, -0.66, 0.72],
+  [-3.18, -1.42, -0.76, 0.62],
+  [3.16, -1.48, -0.72, 0.64],
+  [-1.55, 2.2, -1.15, 0.48],
+  [1.62, 2.0, -1.12, 0.5],
+  [-1.35, -2.22, -1.08, 0.5],
+  [1.42, -2.12, -1.08, 0.52],
 ] as const;
 
 const MOBILE_LAYOUT = [
-  [-2.05, 1.15, -0.95, 0.4],
-  [2.08, -1.28, -0.95, 0.42],
+  [-1.15, 1.82, -0.88, 0.5],
+  [1.12, 1.46, -0.86, 0.54],
+  [-1.28, 0.18, -1.04, 0.42],
+  [1.2, -0.1, -1.02, 0.44],
+  [-1.05, -1.72, -0.92, 0.48],
+  [1.08, -1.6, -0.9, 0.5],
 ] as const;
 
 function normalizeModel(model: THREE.Group) {
@@ -109,10 +117,10 @@ export function HeroPeanutScene() {
       const peanutMaterial = new THREE.MeshStandardMaterial({
         map,
         bumpMap,
-        bumpScale: 0.07,
-        roughness: 0.68,
+        bumpScale: 0.09,
+        roughness: 0.58,
         metalness: 0.02,
-        color: new THREE.Color("#f0b25b"),
+        color: new THREE.Color("#f4b25f"),
       });
 
       model.traverse((child) => {
@@ -128,7 +136,7 @@ export function HeroPeanutScene() {
       peanuts = layout.map(([x, y, z, scale], index) => {
         const clone = model.clone(true);
         clone.position.set(x, y, z);
-        clone.scale.multiplyScalar(scale * 1.14);
+        clone.scale.multiplyScalar(scale * 1.72);
         clone.rotation.set(index * 0.7, index * 0.45, index * 0.9);
         group.add(clone);
         return {

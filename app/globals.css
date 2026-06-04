@@ -122,7 +122,7 @@ a { color: inherit; text-decoration: none; }
   transition: opacity .9s var(--ease), transform 1.2s var(--ease);
 }
 .hero__peanut3d.loaded {
-  opacity: .58;
+  opacity: .86;
   transform: scale(1);
 }
 .hero__peanut3d canvas { width: 100%; height: 100%; display: block; }
@@ -339,8 +339,8 @@ a { color: inherit; text-decoration: none; }
   .nav { padding: 14px 22px; }
   .nav__brand img { height: 34px; }
   .hero { height: 220vh; }
-  .hero__peanut3d { opacity: .42; transform: scale(1.08); }
-  .hero__peanut3d.loaded { opacity: .42; transform: scale(1.02); }
+  .hero__peanut3d { opacity: .76; transform: scale(1.08); }
+  .hero__peanut3d.loaded { opacity: .76; transform: scale(1.02); }
   .hero__line { font-size: clamp(82px, 26vw, 122px); }
   .hero__sub { font-size: 16px; }
   .floater.f1 { left: -8%; top: 20%; width: 140px; }
